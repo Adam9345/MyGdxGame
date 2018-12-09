@@ -50,13 +50,13 @@ public class GameplayScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         update();
-    }
-
-    private void update() {
-        stage.act();
 
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
+    }
+
+    private void update() {
+        stage.act();
     }
 }
