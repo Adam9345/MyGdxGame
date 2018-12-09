@@ -11,12 +11,13 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.ui.IClickCallback;
 import com.mygdx.game.ui.PlayerButton;
+import com.mygdx.game.ui.ResetScoreButton;
 
 public class GameplayScreen extends AbstractScreen {
 
     private Player player;
     private PlayerButton playerButton;
-    private Button resetScoreButton;
+    private ResetScoreButton resetScoreButton;
     private Label scoreLabel;
 
     public GameplayScreen(MyGdxGame game) {
@@ -32,22 +33,14 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initResetScoreLabel() {
-        resetScoreButton = new Button(new ButtonStyle());
-        resetScoreButton.setWidth(100);
-        resetScoreButton.setHeight(100);
-        resetScoreButton.setX(330);
-        resetScoreButton.setY(550);
-        resetScoreButton.setDebug(true);
-
-        stage.addActor(resetScoreButton);
-
-        resetScoreButton.addListener(new ClickListener() {
+        resetScoreButton = new ResetScoreButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
                 game.resetGameScore();
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
+
+        stage.addActor(resetScoreButton);
     }
 
     private void initScoreLabel() {
